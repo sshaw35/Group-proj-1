@@ -10,28 +10,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
   <style>
-
+    /* Body Style: Black background, 20px margin */
     body {
       font-family: 'Orbitron', sans-serif;
-      margin: 20px;  
-      background-color: #000; 
+      margin: 20px;
+      background-color: #000;
     }
 
+    /* Header Style: Yellow, centered, bold */
     h1 {
-      margin-bottom: 1rem;
-      font-family: 'Orbitron', sans-serif;
       text-align: center;
       color: yellow;
       font-weight: bold;
     }
 
+    /* Section container with yellow glow */
     .section {
-      border: 1px solid #555;
-      margin-bottom: 15px;
-      border-radius: 5px;
+      box-shadow: 0 0 15px yellow;
       background-color: #111;
     }
 
+    /* Clickable header style */
     .section-header {
       background-color: #000;
       padding: 12px;
@@ -39,43 +38,42 @@
       font-weight: bold;
       cursor: pointer;
       user-select: none;
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
       color: yellow;
+      text-align: center;
       border-bottom: 1px solid #555;
     }
 
+    /* Collapsible section content */
     .section-body {
       display: none;
       padding: 10px;
     }
 
-    .search-box {
-      margin-bottom: 10px;
-    }
-
+    /* Clickable items in lists */
     .clickable {
-      display: flex;
-      align-items: center;
       cursor: pointer;
       padding: 12px;
       border-bottom: 1px solid #333;
       transition: background-color 0.2s;
       color: yellow;
-      font-size: 1.1rem; /* larger text */
+      font-size: 1.1rem;
     }
+
     .clickable:hover {
       background-color: #222;
     }
+
+    /* Search input style */
     input[type="text"] {
       width: 100%;
       padding: 6px;
       font-size: 1em;
+      font-family: 'Orbitron', sans-serif;
       box-sizing: border-box;
       border: 1px solid #666;
       border-radius: 4px;
       background-color: #222;
-      color: #fff;
+      color: yellow;
     }
   </style>
 </head>
@@ -86,7 +84,7 @@
   <div class="section" id="charactersSection">
     <div class="section-header">Characters</div>
     <div class="section-body">
-      <input type="text" id="characterSearch" class="search-box" placeholder="Search characters..." />
+      <input type="text" id="characterSearch" placeholder="Search characters..." />
       <div id="charactersContainer"></div>
     </div>
   </div>
@@ -94,30 +92,32 @@
   <div class="section" id="speciesSection">
     <div class="section-header">Species</div>
     <div class="section-body">
-      <input type="text" id="speciesSearch" class="search-box" placeholder="Search species..." />
+      <input type="text" id="speciesSearch" placeholder="Search species..." />
       <div id="speciesContainer"></div>
     </div>
   </div>
 
   <script>
-    const charactersSection = document.querySelector('#charactersSection');
-    const speciesSection = document.querySelector('#speciesSection');
-    const characterHeader = charactersSection.querySelector('.section-header');
-    const speciesHeader = speciesSection.querySelector('.section-header');
-    const characterBody = charactersSection.querySelector('.section-body');
-    const speciesBody = speciesSection.querySelector('.section-body');
+    // DOM references
+    const characterHeader = document.querySelector('#charactersSection .section-header');
+    const speciesHeader = document.querySelector('#speciesSection .section-header');
+    const characterBody = document.querySelector('#charactersSection .section-body');
+    const speciesBody = document.querySelector('#speciesSection .section-body');
 
     const charactersContainer = document.getElementById('charactersContainer');
     const speciesContainer = document.getElementById('speciesContainer');
     const characterSearch = document.getElementById('characterSearch');
     const speciesSearch = document.getElementById('speciesSearch');
 
+    // Data storage
     let characters = [];
     let speciesList = [];
 
+    // Load flags
     let charactersLoaded = false;
     let speciesLoaded = false;
 
+    // Toggle visibility of sections and load data on first open
     characterHeader.addEventListener('click', async () => {
       toggleSection(characterBody);
       if (!charactersLoaded) {
@@ -134,6 +134,7 @@
       }
     });
 
+    // Search filters
     characterSearch.addEventListener('input', () => {
       const query = characterSearch.value.trim();
       const filtered = filterList(characters, query);
@@ -146,19 +147,22 @@
       renderList(filtered, speciesContainer, 'species');
     });
 
+    // Toggle section visibility helper
     function toggleSection(section) {
       section.style.display = section.style.display === 'block' ? 'none' : 'block';
     }
 
+    // Filter list by name with case-insensitive regex
     function filterList(list, query) {
       try {
         const re = new RegExp(query, 'i');
         return list.filter(item => re.test(item.name));
       } catch {
-        return list; // fallback if invalid regex
+        return list;
       }
     }
 
+    // Fetch characters from API and render
     async function getCharacters() {
       try {
         const res = await fetch('http://localhost:9001/api/characters');
@@ -166,10 +170,11 @@
         characters = await res.json();
         renderList(characters, charactersContainer, 'character');
       } catch (err) {
-        charactersContainer.innerHTML = `<p>Error loading characters: ${err.message}</p>`;
+        charactersContainer.innerHTML = `<p style="color:red;">Error loading characters: ${err.message}</p>`;
       }
     }
 
+    // Fetch species from API and render
     async function getSpecies() {
       try {
         const res = await fetch('http://localhost:9001/api/species');
@@ -177,10 +182,11 @@
         speciesList = await res.json();
         renderList(speciesList, speciesContainer, 'species');
       } catch (err) {
-        speciesContainer.innerHTML = `<p>Error loading species: ${err.message}</p>`;
+        speciesContainer.innerHTML = `<p style="color:red;">Error loading species: ${err.message}</p>`;
       }
     }
 
+    // Render clickable list items that navigate on click
     function renderList(list, container, type) {
       container.replaceChildren();
       list.forEach(item => {
