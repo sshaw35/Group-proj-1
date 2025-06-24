@@ -7,6 +7,35 @@ body {
   background-color: #000;
 }
 
+p, h2 {
+  color: yellow;
+  font-family: 'Obitron', sans-serif;
+}
+
+a {
+  color:yellow;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  
+}
+
+a:hover {
+  color:white;
+}
+ul li {
+  color: yellow;
+  font-size: 24px;
+  font-weight: bold;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px yellow;
+  text-align: left;
+
+}
+
 /* Header Style: Yellow, centered, bold */
 h1 {
   text-align: center;
@@ -65,3 +94,33 @@ input[type="text"] {
   background-color: #222;
   color: yellow;
 }
+
+/* Fixes and enhancements for generalInfo paragraphs */
+#generalInfo p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem; /* adjust as needed */
+  font-weight: bold;
+  color: yellow;
+}
+
+
+#back-button {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 8px 16px;
+  background-color: black;
+  border: 2px solid yellow;
+  color: yellow;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+}
+#back-button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+

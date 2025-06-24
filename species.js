@@ -76,7 +76,7 @@ function toTitleCase(str) {
     .toLowerCase()
     .split(/[\s,]+/)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+    .join(' / ')
 }
 
 function renderSpecies(species, homeworldName, homeworldId) {
@@ -94,7 +94,7 @@ function renderSpecies(species, homeworldName, homeworldId) {
   homeworldSpan.innerHTML = ''
   if (homeworldId && homeworldName !== 'Unknown') {
     const link = document.createElement('a')
-    link.href = `homeworld.html?id=${homeworldId}`
+    link.href = `planet.html?id=${homeworldId}`
     link.textContent = toTitleCase(homeworldName)
     homeworldSpan.appendChild(link)
   } else {
