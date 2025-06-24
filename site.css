@@ -1,123 +1,67 @@
-body,
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-p {
-  margin: 0;
-  padding: 0;
+/* Orbitron font (sci-fi inspired) should be loaded separately via HTML */
+
+/* Body Style: Black background, 20px margin */
+body {
+  font-family: 'Orbitron', sans-serif;
+  margin: 20px;
+  background-color: #000;
 }
 
-:root {
-  font-family: Arial, Helvetica, sans-serif;
-  --dark1: black;
-  --light1: white;
-  --dark2: darkblue;
-  --light2: lightblue;
-  background-color: var(--light1);
-  color: var(--dark1);
-}
-
-button {
-  background-color: var(--light2);
-  color: var(--dark2);
+/* Header Style: Yellow, centered, bold */
+h1 {
+  text-align: center;
+  color: yellow;
   font-weight: bold;
+}
+
+/* Section container with yellow glow */
+.section {
+  box-shadow: 0 0 15px yellow;
+  background-color: #111;
+}
+
+/* Clickable header style */
+.section-header {
+  background-color: #000;
+  padding: 12px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  color: yellow;
+  text-align: center;
+  border-bottom: 1px solid #555;
+}
+
+/* Collapsible section content */
+.section-body {
+  display: none;
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--dark2);
 }
 
-input {
-  display: block;
-  width: 95%;
-  font-weight: bold;
-  font-size: 1.1em;
-  line-height: 1.5em;
-  border: none;
-  border-bottom: 2px solid var(--dark2);
-  outline: none;
-  margin: 5px;
+/* Clickable items in lists */
+.clickable {
+  cursor: pointer;
+  padding: 12px;
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s;
+  color: yellow;
+  font-size: 1.1rem;
 }
 
-label {
-  font-weight: bold;
-  font-size: 1.1em;
+.clickable:hover {
+  background-color: #222;
 }
 
-.small {
-  font-size: small;
-  font-weight: normal;
-}
-
-/* Characters */
-#charactersList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 0;
-}
-
-#charactersList div {
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid var(--dark2);
-  border-radius: 5px;
-  color: var(--dark2);
-  background-color: var(--light2);
-  font-weight: bold;
-}
-
-/* Character page */
-h1#name {
-  margin: 50px;
-}
-
-#generalInfo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  border: 20px;
-}
-
-#generalInfo p {
-  padding: 20px;
-  margin: 10px;
-  color: var(--dark2);
-  background-color: var(--light2);
-}
-
-#generalInfo span {
-  font-weight: bold;
-  font-size: 1.1em;
-}
-
-section#planets,
-section#characters,
-section#films {
-  margin: 50px;
-}
-
-section#planets ul,
-section#characters ul,
-section#films ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-section#planets a,
-section#characters a,
-section#films a {
-  display: inline-block;
-  text-decoration: none;
-  font-size: 1.1em;
-
-  background-color: var(--light2);
-  color: var(--dark2);
-  font-weight: bold;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--dark2);
+/* Search input style */
+input[type="text"] {
+  width: 100%;
+  padding: 6px;
+  font-size: 1em;
+  font-family: 'Orbitron', sans-serif;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background-color: #222;
+  color: yellow;
 }
